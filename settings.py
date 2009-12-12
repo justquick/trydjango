@@ -1,4 +1,4 @@
-import sys, os
+import sys, os 
 FORCE_SCRIPT_NAME=''
 # Quick hack to put frontendadmin from the parent directory into pythonpath
 # If this is not working correctly, uncomment these lines and put
