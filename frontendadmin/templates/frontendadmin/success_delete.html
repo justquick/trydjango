@@ -1,0 +1,13 @@
+{% extends "frontendadmin/base.html" %}
+
+{% comment %}
+
+    Normally a view would redirect to the last page. After delete from a object
+    in a detail-view, there is no "last page" so we redirect to this unique,
+    shiny success-page.
+
+{% endcomment %}
+
+{% block frontendadmin_content %}
+    {% include 'frontendadmin/success_delete_ajax.html' %}
+{% endblock %}

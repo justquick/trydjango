@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<script>
+var form = $("form#form-{{ action }}-{{ model_title|slugify }}");
+     form.submit(function(){
+       $.post("{{ action_url }}", form.serialize(), function(html) {
+		$("#container-{{ action }}-{{ model_title|slugify }}").html(html);
+	   });
+       return false;
+     });
+</script>
+
+<div id="container-{{ action }}-{{ model_title|slugify }}">
+
+<fieldset class="frontendadmin">
+	<legend>{{ action }} {{ model_title }}</legend>
+
+	<form id="form-{{ action }}-{{ model_title|slugify }}" method="post" action="{{ action_url }}" enctype="multipart/form-data">
+	{% spaceless %}
+	{% for k,v in request.GET.items %}
+	{% ifequal k 'next' %}{% else %}
+	<input type="hidden" name="{{k}}" value="{{v}}"/>
+	{% endifequal %}
+	{% endfor %}
+	{% endspaceless %}
+
+		{{ form.as_p }}
+		<p class="submit">
+			<input type="submit" class="submit" value="{% trans "Submit" %}"/>
+		    <input type="submit" class="cancel" name="_cancel" value="{% trans "Cancel" %}"
+		    	onclick="return confirm('{% trans "Are you sure to cancel this action?" %}');"/>
+		</p>
+	</form>
+</fieldset>
+</div>

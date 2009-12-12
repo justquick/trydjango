@@ -1,0 +1,15 @@
+{% extends "frontendadmin/base.html" %}
+
+{% comment %}
+
+    First, a view would redirect to the last page the user came from. If
+    this is not available (because somebody fiddled in the url), we redirect
+    to this common success page.
+
+    Normally a user should never see this page.
+
+{% endcomment %}
+
+{% block frontendadmin_content %}
+    {% include 'frontendadmin/success_ajax.html'%}	
+{% endblock %}
